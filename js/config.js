@@ -50,3 +50,6 @@ const GALLERY_CONFIG = {
 
 /** 성향 그룹 표시 순서 */
 const GROUP_ORDER = ['친윤', '비윤', '민주당', '진보·좌파', '해외정치', '기타'];
+
+/** 이 값 미만인 구간(첫 초과 이전)은 차트에서 제거 */
+const POST_THRESHOLD = 1000;
