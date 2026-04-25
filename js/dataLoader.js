@@ -26,6 +26,19 @@ const DataLoader = (() => {
   }
 
   /**
+   * POST_THRESHOLD를 처음 초과하는 달 이전 데이터를 제거.
+   * 한 번도 초과하지 않으면 null 반환.
+   */
+  function applyThreshold(rawData) {
+    const months = Object.keys(rawData).sort();
+    const cutoff = months.find(m => rawData[m] >= POST_THRESHOLD);
+    if (!cutoff) return null;
+    const result = {};
+    months.forEach(m => { if (m >= cutoff) result[m] = rawData[m]; });
+    return result;
+  }
+
+  /**
    * GALLERY_CONFIG의 모든 키에 대해 CSV를 fetch합니다.
    * 파일이 없거나 임계값 미달인 갤러리는 결과에서 제외됩니다.
    *
